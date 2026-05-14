@@ -47,4 +47,3 @@ The game checks whether the guess is:
 
 ---
 
-Made with ❤️ using JavaScript
