@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Number Guess Game</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#1e293b;
+    }
+
+    .container{
+      background:white;
+      padding:30px;
+      border-radius:12px;
+      width:350px;
+      text-align:center;
+      box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    h1{
+      margin-bottom:20px;
+      color:#0f172a;
+    }
+
+    input{
+      width:100%;
+      padding:12px;
+      margin-top:15px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      font-size:16px;
+    }
+
+    button{
+      margin-top:15px;
+      padding:12px 20px;
+      border:none;
+      border-radius:8px;
+      background:#2563eb;
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+    }
+
+    button:hover{
+      background:#1d4ed8;
+    }
+
+    #message{
+      margin-top:20px;
+      font-size:18px;
+      font-weight:bold;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Guess The Number</h1>
+
+    <!-- LIMIT INPUT -->
+    <input 
+      type="number" 
+      id="limit"
+      placeholder="Enter maximum limit"
+    >
+
+    <button onclick="startGame()">
+      Start Game
+    </button>
+
+    <!-- GUESS INPUT -->
+    <input 
+      type="number" 
+      id="guess"
+      placeholder="Enter your guess"
+    >
+
+    <button onclick="checkGuess()">
+      Guess
+    </button>
+
+    <div id="message"></div>
+
+  </div>
+
+  <script>
+
+    let randomNumber = 0;
+    let maxLimit = 0;
+
+    function startGame(){
+
+      maxLimit = Number(document.getElementById("limit").value);
+
+      if(maxLimit <= 0){
+
+        alert("Enter a valid limit");
+        return;
+      }
+
+      randomNumber = Math.floor(Math.random() * maxLimit) + 1;
+
+      document.getElementById("message").innerHTML =
+        `Game started! Guess between 1 and ${maxLimit}`;
+    }
+
+    function checkGuess(){
+
+      let guess = Number(document.getElementById("guess").value);
+
+      if(guess === randomNumber){
+
+        document.getElementById("message").innerHTML =
+          "🎉 Correct Guess!";
+      }
+      else if(guess > randomNumber){
+
+        document.getElementById("message").innerHTML =
+          "Too High!";
+      }
+      else{
+
+        document.getElementById("message").innerHTML =
+          "Too Low!";
+      }
+    }
+
+  </script>
+
+</body>
+</html>
